@@ -27,6 +27,36 @@ func transformationIntoArabian(str string) int {
 func transformationIntoRoman(integer int) string {
 	result := ""
 	for integer > 0 {
+		if (integer - 500) >= 0 {
+			result += "D"
+			integer -= 500
+			continue
+		}
+		if (integer - 400) >= 0 {
+			result += "CD"
+			integer -= 400
+			continue
+		}
+		if (integer - 100) >= 0 {
+			result += "C"
+			integer -= 100
+			continue
+		}
+		if (integer - 90) >= 0 {
+			result += "XC"
+			integer -= 90
+			continue
+		}
+		if (integer - 50) >= 0 {
+			result += "L"
+			integer -= 50
+			continue
+		}
+		if (integer - 40) >= 0 {
+			result += "XL"
+			integer -= 40
+			continue
+		}
 		if (integer - 10) >= 0 {
 			result += "X"
 			integer -= 10
@@ -78,7 +108,6 @@ func main() {
 		arg2, _ := strconv.Atoi(operands[2])
 		RimArg1 := transformationIntoArabian(operands[0])
 		RimArg2 := transformationIntoArabian(operands[2])
-		fmt.Println(arg1, arg2, RimArg1, RimArg2)
 
 		if arg1 == 0 && arg2 == 0 && RimArg1 != 0 && RimArg2 != 0 {
 			switch symbol {
@@ -99,7 +128,7 @@ func main() {
 				fmt.Println("Вывод ошибки, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 			}
 		} else if arg1 != 0 && arg2 != 0 && RimArg1 == 0 && RimArg2 == 0 {
-			if arg1 < 1 && arg1 > 10 && arg2 < 1 && arg2 > 10 {
+			if arg1 < 1 || arg1 > 10 || arg2 < 1 || arg2 > 10 {
 				fmt.Println("Вывод ошибки, так как калькулятор принимает на вход числа от 1 до 10 включительно")
 				break
 			}
@@ -117,7 +146,7 @@ func main() {
 				fmt.Println("Вывод ошибки, так как формат математической операции не удовлетворяет заданию — два операнда и один оператор (+, -, /, *).")
 			}
 		} else {
-			fmt.Println("Вывод ошибки, некорректного ввода")
+			fmt.Println("Вывод ошибки, из-за некорректного ввода")
 			break
 		}
 
