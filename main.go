@@ -109,6 +109,11 @@ func main() {
 		RimArg1 := transformationIntoArabian(operands[0])
 		RimArg2 := transformationIntoArabian(operands[2])
 
+		if (arg1 < 1 && RimArg1 == 0 && RimArg2 == 0) || arg1 > 10 || (arg2 < 1 && RimArg1 == 0 && RimArg2 == 0) || arg2 > 10 {
+			fmt.Println("Вывод ошибки, так как калькулятор принимает на вход числа от 1 до 10 включительно")
+			break
+		}
+
 		if arg1 == 0 && arg2 == 0 && RimArg1 != 0 && RimArg2 != 0 {
 			switch symbol {
 			case "+":
@@ -119,7 +124,6 @@ func main() {
 				} else {
 					fmt.Println("Вывод ошибки, так как в римской системе нет отрицательных чисел.")
 				}
-
 			case "/":
 				fmt.Println(transformationIntoRoman(RimArg1 / RimArg2))
 			case "*":
